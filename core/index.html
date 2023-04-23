@@ -14,13 +14,83 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Hello World!</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <title>Frequency Analysis</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <input type="file" id="fileInput" name="file" />
-    <button onclick="getFileText()">Get File Text</button>
+    <main>
+      <section class="card info-section">
+      <h3>Frequency Analysis</h3>
+       
+    <p>
+      Frequency analysis is based on the fact that, in any given stretch of written language, certain letters and combinations of letters occur with varying frequencies. In this assignment you should develop an application  helping to crypto analyst  to making frequency analysis on cipher text. Application should be flexible to use any given input cipher text with different languages ( German, French, Russian, Turkish etc.)</p>
+    
+    </p>
+    <p>
+      This assignment is done by Mohammad Mohsen Khashei.<small>2022-2023 Spring Term - Assignment III</small>
+    </p>
+  
+      </section>
+      <section class="card file-section">
+        <div class="row">
+          <div class="col">
+            <div class="alert alert-info" role="info">
+              Insert Your File For Analysis here!
+            </div>
+            <label for="fileInput" class="form-label">Choose Your File:</label>
+            <input type="file" id="fileInput" />
+            <button onclick="getFileText()" class="btn btn-primary">
+              Process
+            </button>
+          </div>
+        </div>
+      </section>
+      <div id="pare">
+        <section class="card show-section">
+          <div class="row">
+            <div class="col" id="content">
+              <div class="alert alert-success" role="success">
+                Here Is Your File Content.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section
+        class="card change-section mt-3 mb-3 sticky-bottom"
+        id="exitSection"
+      >
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="alert alert-warning" role="warning">
+              Take Replace Rules.
+            </div>
 
+            <label for="repControlInput" class="form-label"
+              >Insert New Replacement:</label
+            >
+
+            <input
+              type="text"
+              class="form-control"
+              id="repControlInput"
+              placeholder="A:B, f:c, G:t"
+            />
+            
+          </div>
+          <small>The prefered format: a:b, c:O, I:q</small>
+          <p id="error" style="display:none; color:red;">Input is invalid</p>
+
+          <div class="col-lg-12 mt-3 text-center">
+            <button onclick="processData()" class="btn btn-primary">
+              Process
+            </button>
+            <button class="btn btn-danger" onclick="exit()">Exit</button>
+          </div>
+        </div>
+      </section>
+      <!-- <button onclick="topFunction()" id="goTop" title="Go to top">Top</button> -->
+    </main>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
   </body>

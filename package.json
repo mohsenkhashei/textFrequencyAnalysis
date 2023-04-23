@@ -1,0 +1,37 @@
+{
+  "name": "text-frequency-analysis",
+  "author": "Mohsen Khashei",
+  "version": "1.0.0",
+  "description": "This applicaton is for educational purpose. using Frequency Analysis for decipher text ",
+  "main": "./core/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "productName": "frequencyAnalysis",
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.education"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  },
+  "dependencies": {
+    "@npmcli/fs": "^3.1.0",
+    "electron": "^24.1.2",
+    "node-pre-gyp": "^0.17.0",
+    "sqlite3": "^5.1.6"
+  }
+}
