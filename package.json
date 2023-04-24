@@ -6,9 +6,18 @@
   "main": "./core/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
   },
   "build": {
+    "extraResources": [
+      "core/tools/dist"
+    ],
+    "asarUnpack": [
+      "core/tools/dist/frequencyDB.db"
+    ],
     "appId": "com.yourcompany.yourapp",
     "productName": "frequencyAnalysis",
     "directories": {
@@ -30,8 +39,11 @@
   },
   "dependencies": {
     "@npmcli/fs": "^3.1.0",
-    "electron": "^24.1.2",
     "node-pre-gyp": "^0.17.0",
     "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "electron": "^24.1.2",
+    "electron-builder": "^23.6.0"
   }
 }

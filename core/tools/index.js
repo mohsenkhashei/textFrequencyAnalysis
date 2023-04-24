@@ -1,8 +1,15 @@
 const SQLite3Module = require("./SQLite3Module"); // Update the path to the location of the module
-
+const path = require("path");
 // Create an instance of the module
 const { countLetters, switchLetters } = require("./frequencyAnalysis");
-const db = new SQLite3Module("frequencyDB");
+//
+console.log(__dirname);
+const dbPath = `${__dirname}/dist/frequencyDB.db`.replace(
+  "app.asar",
+  "app.asar.unpacked"
+);
+// const db = new SQLite3Module(path);
+const db = new SQLite3Module(dbPath);
 const tableName = "frequencyTBL";
 const schema = {
   ID: "INTEGER PRIMARY KEY",
