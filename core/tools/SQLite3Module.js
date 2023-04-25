@@ -56,6 +56,24 @@ class SQLite3Module {
       }
     );
   }
+  insertWithReplacement(tableName, data, callback) {
+    const paragraph = data.paragraph;
+    const frAnalysis = data.frAnalysis;
+    const replacement = data.replacement;
+
+    this.db.run(
+      `INSERT INTO ${tableName} (paragraph, frAnalysis, replacement) VALUES (?, ?, ?)`,
+      [paragraph, frAnalysis, replacement],
+      function (err) {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`A row has been inserted with ID ${this.lastID}`);
+        }
+        callback(err);
+      }
+    );
+  }
 
   select(tableName, columns, condition) {
     const cols = columns.join(", ");
