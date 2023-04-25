@@ -4,23 +4,20 @@ class SQLite3Module {
   constructor(dbName) {
     this.db = new sqlite3.Database(dbName);
   }
-  /**
-   * ID, text, frAnalysis, replacement,
-   *
-   *
-   */
-  // Drop existing table if it exists
 
-  schema(tableName, schema, callback) {
-    const dropTableQuery = `DROP TABLE IF EXISTS ${tableName}`;
-    this.db.run(dropTableQuery, function (err) {
+  // delete table data
+  delete(tableName, callback) {
+    const sql = `DELETE FROM ${tableName}`;
+    this.db.run(sql, function (err) {
       if (err) {
         console.error(err);
       } else {
-        console.log("Table dropped successfully");
+        console.log(`Rows deleted: ${this.changes}`);
       }
+      callback(err);
     });
-
+  }
+  schema(tableName, schema, callback) {
     let tableStructure = "";
     for (const [key, value] of Object.entries(schema)) {
       tableStructure += `${key} ${value}, `;
@@ -106,20 +103,6 @@ class SQLite3Module {
         console.error(err.message);
       } else {
         console.log(`Rows updated: ${this.changes}`);
-      }
-      callback(err);
-    });
-  }
-
-  // Delete records
-  delete(tableName, condition, callback) {
-    const sql = `DELETE FROM ${tableName} WHERE ${condition}`;
-
-    this.db.run(sql, function (err) {
-      if (err) {
-        console.error(err.message);
-      } else {
-        console.log(`Rows deleted: ${this.changes}`);
       }
       callback(err);
     });
