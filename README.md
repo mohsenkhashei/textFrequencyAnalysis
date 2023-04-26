@@ -2,6 +2,14 @@
 
 Frequency analysis is based on the fact that, in any given stretch of written language, certain letters and combinations of letters occur with varying frequencies. In this assignment you should develop an application helping to crypto analyst to making frequency analysis on cipher text. Application should be flexible to use any given input cipher text with different languages ( German, French, Russian, Turkish etc.)
 
+## Demo
+
+![App Screenshot](./readme/11.png)
+![App Screenshot](./readme/111.png)
+![App Screenshot](./readme/1111.png)
+
+## Files structure
+
 - `package.json` - Points to the app's main file and lists its details and dependencies.
 - `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
 - `index.html` - A web page to render. This is the app's **renderer process**.
