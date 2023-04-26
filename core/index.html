@@ -45,51 +45,44 @@
           </div>
         </div>
       </section>
-      <div id="pare">
-        <section class="card show-section">
-          <div class="row">
-            <div class="col" id="content">
-              <div class="alert alert-success" role="success">
-                Here Is Your File Content.
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+      <div id="pare"></div>
+     
       <section
-        class="card change-section mt-3 mb-3 sticky-bottom"
-        id="exitSection"
-      >
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="alert alert-warning" role="warning">
-              Take Replace Rules.
-            </div>
-
-            <label for="repControlInput" class="form-label"
-              >Insert New Replacement:</label
-            >
-
-            <input
-              type="text"
-              class="form-control"
-              id="repControlInput"
-              placeholder="A:B, f:c, G:t"
-            />
-            
+      class="card change-section mt-3 mb-3 sticky-bottom"
+      id="exitSection" 
+      style="display: none;"
+    >
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="alert alert-warning" role="warning">
+            Take Replace Rules.
           </div>
-          <small>The prefered format: a:b, c:O, I:q</small>
-          <p id="error" style="display:none; color:red;">Input is invalid</p>
 
-          <div class="col-lg-12 mt-3 text-center">
-            <button onclick="processData()" class="btn btn-primary">
-              Process
-            </button>
-            <button class="btn btn-danger" onclick="exit()">Exit</button>
-          </div>
+          <label for="repControlInput" class="form-label"
+            >Insert New Replacement:</label
+          >
+
+          <input
+            type="text"
+            class="form-control"
+            id="repControlInput"
+            placeholder="A:B, f:c, G:t"
+          />
+          
         </div>
-      </section>
-      <!-- <button onclick="topFunction()" id="goTop" title="Go to top">Top</button> -->
+        <small>The prefered format: a:b, c:O, I:q</small>
+        <p id="error" style="display:none; color:red;">Input is invalid</p>
+
+        <div class="col-lg-12 mt-3 text-center">
+          <button onclick="processData()" class="btn btn-primary">
+            Process
+          </button>
+          <button class="btn btn-danger" onclick="exit()">Exit</button>
+        </div>
+      </div>
+    </section>
+      
+     
     </main>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
