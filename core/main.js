@@ -18,15 +18,11 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
-  // mainWindow.webContents.openDevTools();
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools();
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
 
@@ -37,23 +33,26 @@ app.whenReady().then(() => {
   });
 
   ipcMain.on("fileData", (event, data) => {
-    let processedData = init(data);
-    event.sender.send("fileDataResponse", { processedData });
+    init(data)
+      .then((processedData) => {
+        event.sender.send("fileDataResponse", { processedData });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+  ipcMain.on("switchLetters", (event, replacementInput) => {
+    processSwitchLetters(replacementInput)
+      .then((result) => {
+        event.sender.send("switchLettersResponse", result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
 });
 // Quit when all windows are closed, except on macOS. There, it's common
-ipcMain.on("switchLetters", (event, replacementInput) => {
-  // console.log(replacementInput);
-  // const myObject = JSON.parse(serializedData);
-  processSwitchLetters(replacementInput)
-    .then((result) => {
-      console.log(result);
-      event.sender.send("switchLettersResponse", result);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
+
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", function () {
