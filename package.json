@@ -13,10 +13,10 @@
   },
   "build": {
     "extraResources": [
-      "core/tools/dist"
+      "./database"
     ],
     "asarUnpack": [
-      "core/tools/dist/frequencyDB.db"
+      "./database/frequencyDB.db"
     ],
     "appId": "com.yourcompany.yourapp",
     "productName": "frequencyAnalysis",
