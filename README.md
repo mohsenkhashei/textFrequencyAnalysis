@@ -20,18 +20,10 @@ Frequency analysis is based on the fact that, in any given stretch of written la
 
 ## For Use
 
-Inside Folder `executable` you will find the executable file for your OS.
-
-```bash
-# Clone this repository
-git clone https://github.com/mohsenkhashei/textFrequencyAnalysis
-# Go into the repository
-cd textFrequencyAnalysis
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
+Due to limitation of github, uploaded the executable files [here](https://drive.google.com/drive/folders/1_nc7ai190ZqTmYI3BGll2wxWnGBh5vDK?usp=sharing) you can download the executable files for your OS. <br />
+`.dmg` for mac <br />
+`.AppImage` for linux <br />
+`.exe` for windows <br />
 
 ## For Developing
 
@@ -50,7 +42,18 @@ npm start
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
-## This App created by
+## For Packaging
+
+```bash
+# generating mac version
+npm run build:mac
+# generating linux version
+npm run build:linux
+# generating windows version
+npm run build:win
+```
+
+Note: If you want to generate other versions for each OS [see this guide](https://www.electron.build)
 
 - Electron
 - NodeJS
@@ -66,3 +69,7 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 ## License
 
 [CC0 1.0 (Public Domain)](LICENSE.md)
+
+```
+
+```

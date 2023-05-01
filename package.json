@@ -1,5 +1,6 @@
 {
   "name": "text-frequency-analysis",
+  "productName": "textFrequencyAnalysis",
   "author": "Mohsen Khashei",
   "version": "1.0.0",
   "description": "This applicaton is for educational purpose. using Frequency Analysis for decipher text ",
@@ -7,30 +8,42 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
+    "postinstall": "install-app-deps",
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
     "build:linux": "electron-builder --linux"
   },
   "build": {
+    "files": [
+      "**/*",
+      "!**/*.db",
+      "!**/*.sqlite",
+      "!**/*.sqlite3"
+    ],
     "extraResources": [
-      "./database"
+      {
+        "from": "database",
+        "to": "database",
+        "filter": [
+          "*.db",
+          "*.sqlite",
+          "*.sqlite3"
+        ]
+      }
     ],
-    "asarUnpack": [
-      "./database/frequencyDB.db"
-    ],
-    "appId": "com.yourcompany.yourapp",
+    "appId": "com.frequencyAnalysis.app",
     "productName": "frequencyAnalysis",
     "directories": {
       "output": "build"
     },
     "mac": {
       "target": "dmg",
-      "icon": "assets/icon.icns",
+      "icon": "assets/icon.png",
       "category": "public.app-category.education"
     },
     "win": {
       "target": "nsis",
-      "icon": "assets/icon.ico"
+      "icon": "assets/icon.png"
     },
     "linux": {
       "target": "AppImage",
@@ -39,6 +52,7 @@
   },
   "dependencies": {
     "@npmcli/fs": "^3.1.0",
+    "electron-log": "^4.4.8",
     "node-pre-gyp": "^0.17.0",
     "sqlite3": "^5.1.6"
   },

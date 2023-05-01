@@ -1,20 +1,43 @@
+const log = require("electron-log");
+const { app } = require("electron");
 const SQLite3Module = require("./SQLite3Module");
 const path = require("path");
 const { countLetters, switchLetters } = require("./frequencyAnalysis");
 const DB_NAME = "frequencyDB.db";
 const TABLE_NAME = "frequencyTBL";
-const DB_PATH = `${path.resolve("./database/" + DB_NAME)}`.replace(
-  "app.asar",
-  "app.asar.unpacked"
-);
+const DB_PATH = path.join(__dirname, "..", "..", "..", "database", DB_NAME);
+const fs = require("fs");
+
+const appDataPath = app.getPath("userData");
+const newDbPath = path.join(appDataPath, DB_NAME);
+
+fs.copyFile(DB_PATH, newDbPath, (err) => {
+  if (err) {
+    log.error(`Error copying database file: ${err}`);
+  }
+});
+
+if (!fs.existsSync(newDbPath)) {
+  log.error(`Database file not found at path ${DB_PATH}`);
+  process.exit(1);
+}
+fs.access(newDbPath, fs.constants.W_OK, (err) => {
+  if (err) {
+    log.error(`Error accessing database file: ${err.message}`);
+  } else {
+    log.info(`Database ready to work in ${DB_PATH}`);
+  }
+});
 
 const _deleteTable = async (db) => {
   const sql = `DELETE FROM ${TABLE_NAME}`;
   try {
     await db.run(sql);
-    console.log(`Table Deleted`);
+    // console.log(`Table Deleted`);
+    log.info(`Table Deleted`);
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    log.error(err);
   }
 };
 const _createSchema = async (db) => {
@@ -32,16 +55,19 @@ const _createSchema = async (db) => {
   const sql = `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (${tableStructure})`;
   try {
     await db.query(sql);
-    console.log(`Schema Created`);
+    // console.log(`Schema Created`);
+    log.info(`Schema Created`);
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    log.error(err);
   }
 };
 
 const init = async (text) => {
-  const db = new SQLite3Module(DB_PATH);
+  log.info(`start init function `);
+  const db = new SQLite3Module(newDbPath);
   await db.init();
-
+  log.info(`database initialized`);
   _deleteTable(db);
   _createSchema(db);
 
@@ -53,12 +79,14 @@ const init = async (text) => {
 
     const sql = `INSERT INTO ${TABLE_NAME} (${columns}) VALUES (?, ?)`;
     const lastInsertedId = await db.run(sql, params);
-    console.log(`Last inserted ID: ${lastInsertedId}`);
+    // console.log(`Last inserted ID: ${lastInsertedId}`);
+    log.info(`Last inserted ID: ${lastInsertedId}`);
 
     await db.close();
     return { paragraph: text, frAnalysis: frAnalysis };
   } catch (err) {
-    console.error(err);
+    log.error(err);
+    // console.error(err);
   }
 };
 
@@ -79,16 +107,18 @@ const getData = async (db) => {
     const cols = columns.join(", ");
     let sql = `SELECT ${cols} FROM ${TABLE_NAME} ORDER BY ID DESC LIMIT 1`;
     const response = await db.query(sql);
-    console.log(response);
+    log.info(`getData data retrived`);
+    // console.log(response);
     return response[0];
     // Process the retrieved rows
   } catch (err) {
-    console.error(err);
+    log.error(err);
+    // console.error(err);
   }
 };
 const processSwitchLetters = async (replacement) => {
   try {
-    const db = new SQLite3Module(DB_PATH);
+    const db = new SQLite3Module(newDbPath);
     await db.init();
 
     let changedInput = changeInput(replacement);
@@ -105,7 +135,8 @@ const processSwitchLetters = async (replacement) => {
     const params = Object.values(data);
     const sql = `INSERT INTO ${TABLE_NAME} (${columns}) VALUES (?, ?, ?)`;
     const lastInsertedId = await db.run(sql, params);
-    console.log(`inserted with ${lastInsertedId}`);
+    // console.log(`inserted with ${lastInsertedId}`);
+    log.info(`Last inserted ID: ${lastInsertedId}`);
     let output = {
       paragraph: newText,
       frAnalysis: frAnalysis,
@@ -113,7 +144,8 @@ const processSwitchLetters = async (replacement) => {
     };
     return output;
   } catch (err) {
-    console.error(err);
+    log.error(err);
+    // console.error(err);
   }
 };
 
