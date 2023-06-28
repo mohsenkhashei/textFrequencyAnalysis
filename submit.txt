@@ -1,6 +1,0 @@
-Hello Professor Seral,
-Due to my project data that is bigger than maximum limit of submission of moodle i submit this text file that contains my assignment github page.
-with complete readme file of project.
-https://github.com/mohsenkhashei/textFrequencyAnalysis
-
-Thanks in advance.
