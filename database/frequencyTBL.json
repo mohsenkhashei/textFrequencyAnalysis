@@ -1,0 +1,22 @@
+[
+  {
+    "ID": 1,
+    "paragraph": "Hello Professor Seral,\nDue to my project data that is bigger than maximum limit of submission of moodle i submit this text file that contains my assignment github page.\nwith complete readme file of project.\nhttps://github.com/mohsenkhashei/textFrequencyAnalysis\n\nThanks in advance.",
+    "frAnalysis": "[{\"letter\":\"t\",\"count\":25},{\"letter\":\"e\",\"count\":23},{\"letter\":\"i\",\"count\":20},{\"letter\":\"s\",\"count\":18},{\"letter\":\"a\",\"count\":17},{\"letter\":\"o\",\"count\":16},{\"letter\":\"m\",\"count\":14},{\"letter\":\"h\",\"count\":13}]"
+  },
+  {
+    "paragraph": "Hello Profeqqor qeral,\nDue to my project data that iq bigger than maximum limit of qubmiqqion of moodle i qubmit thiq text file that containq my aqqignment github page.\nwith complete readme file of project.\nhttpq://github.com/mohqenkhaqhei/textFrequencyAnalyqiq\n\nThankq in advance.",
+    "frAnalysis": "[{\"letter\":\"t\",\"count\":25},{\"letter\":\"e\",\"count\":23},{\"letter\":\"i\",\"count\":20},{\"letter\":\"q\",\"count\":19},{\"letter\":\"a\",\"count\":17},{\"letter\":\"o\",\"count\":16},{\"letter\":\"m\",\"count\":14},{\"letter\":\"h\",\"count\":13}]",
+    "replacement": "s:q"
+  },
+  {
+    "paragraph": "Hello Profeqqor qeral,\nDue eo my projece daea ehae iq bigger ehan maximum limie of qubmiqqion of moodle i qubmie ehiq eexe file ehae coneainq my aqqignmene giehub page.\nwieh compleee readme file of projece.\nheepq://giehub.com/mohqenkhaqhei/eexeFrequencyAnalyqiq\n\nehankq in advance.",
+    "frAnalysis": "[{\"letter\":\"e\",\"count\":48},{\"letter\":\"i\",\"count\":20},{\"letter\":\"q\",\"count\":19},{\"letter\":\"a\",\"count\":17},{\"letter\":\"o\",\"count\":16},{\"letter\":\"m\",\"count\":14},{\"letter\":\"h\",\"count\":13},{\"letter\":\"n\",\"count\":12}]",
+    "replacement": "t:e"
+  },
+  {
+    "paragraph": "Hillo Profiqqor qiral,\nDui io my projici daia ihai iq biggir ihan maximum limii of qubmiqqion of moodli i qubmii ihiq iixi fili ihai coniainq my aqqignmini giihub pagi.\nwiih compliii riadmi fili of projici.\nhiipq://giihub.com/mohqinkhaqhii/iixiFriquincyAnalyqiq\n\nihankq in advanci.",
+    "frAnalysis": "[{\"letter\":\"i\",\"count\":68},{\"letter\":\"q\",\"count\":19},{\"letter\":\"a\",\"count\":17},{\"letter\":\"o\",\"count\":16},{\"letter\":\"m\",\"count\":14},{\"letter\":\"h\",\"count\":13},{\"letter\":\"n\",\"count\":12},{\"letter\":\"l\",\"count\":9}]",
+    "replacement": "e:i"
+  }
+]

@@ -10,20 +10,20 @@ Frequency analysis is based on the fact that, in any given stretch of written la
 
 ## Files structure
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-- `preload.js` - A content script that runs before the renderer process loads.
-- `core/tools/index.js` - Is the handler between Electron and NodeJS.
-- `core/tools/frequencyAnalysis.js` - Is the core of the app that written in NodeJS and do the Frequency Analysis
-- `core/tools/SQLite3Module.js` - Is the wrapper class on SQLlite DB.
+-   `package.json` - Points to the app's main file and lists its details and dependencies.
+-   `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
+-   `index.html` - A web page to render. This is the app's **renderer process**.
+-   `preload.js` - A content script that runs before the renderer process loads.
+-   `core/tools/index.js` - Is the handler between Electron and NodeJS.
+-   `core/tools/frequencyAnalysis.js` - Is the core of the app that written in NodeJS and do the Frequency Analysis
 
 ## For Use
 
 Due to limitation of github, uploaded the executable files [here](https://drive.google.com/drive/folders/1_nc7ai190ZqTmYI3BGll2wxWnGBh5vDK?usp=sharing) you can download the executable files for your OS. <br />
 `.dmg` for mac <br />
-`.AppImage` for linux <br />
 `.exe` for windows <br />
+`.AppImage` for linux<br />
+`.deb` for linuxs <br />
 
 ## For Developing
 
@@ -33,7 +33,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 # Clone this repository
 git clone https://github.com/mohsenkhashei/textFrequencyAnalysis
 # Go into the repository
-cd textFrequencyAnalysis
+cd textFrequencyAnalysis/
 # Install dependencies
 npm install
 # Run the app
@@ -55,21 +55,12 @@ npm run build:win
 
 Note: If you want to generate other versions for each OS [see this guide](https://www.electron.build)
 
-- Electron
-- NodeJS
-- SQLITE3
-- JAVASCRIPT
-- HTML
-- CSS
+-   Electron
+-   NodeJS
+-   JAVASCRIPT
+-   HTML
+-   CSS
 
-## Authors
+## Author
 
-- [@mohsenkhashei](https://www.github.com/mohsenkhashei)
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
-
-```
-
-```
+-   [@mohsenkhashei](https://www.github.com/mohsenkhashei)
