@@ -11,11 +11,11 @@ Frequency analysis is based on the fact that, in any given stretch of written la
 ## Files structure
 
 -   `package.json` - Points to the app's main file and lists its details and dependencies.
--   `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
--   `index.html` - A web page to render. This is the app's **renderer process**.
--   `preload.js` - A content script that runs before the renderer process loads.
--   `core/tools/index.js` - Is the handler between Electron and NodeJS.
--   `core/tools/frequencyAnalysis.js` - Is the core of the app that written in NodeJS and do the Frequency Analysis
+-   `core/main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
+-   `core/index.html` - A web page to render. This is the app's **renderer process**.
+-   `core/preload.js` - A content script that runs before the renderer process loads.
+-   `core/index.js` - Is the handler between Electron and NodeJS.
+-   `core/frequencyAnalysis.js` - Is the core of the app that written in NodeJS and do the Frequency Analysis
 
 ## For Use
 
