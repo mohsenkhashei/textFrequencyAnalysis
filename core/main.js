@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { init, processSwitchLetters, deletePrev } = require("./tools/index");
+const { init, processSwitchLetters } = require("./index");
 
 function createWindow() {
 	// Create the browser window.
@@ -33,16 +33,6 @@ app.whenReady().then(() => {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow();
 	});
 
-	ipcMain.on("deletePreviousFile", (event, data) => {
-		deletePrev()
-			.then((response) => {
-				event.sender.send("deletePreviousFileResponse", response);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	});
-
 	ipcMain.on("fileData", (event, data) => {
 		init(data)
 			.then((processedData) => {
@@ -53,7 +43,6 @@ app.whenReady().then(() => {
 			});
 	});
 	ipcMain.on("switchLetters", (event, replacementInput) => {
-		console.log("clicked");
 		processSwitchLetters(replacementInput)
 			.then((result) => {
 				// console.log(result);

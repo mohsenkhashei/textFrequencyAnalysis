@@ -45,11 +45,7 @@
 						<label for="fileInput" class="form-label"
 							>Choose Your File:</label
 						>
-						<input
-							type="file"
-							onchange="deletePreFile()"
-							id="fileInput"
-						/>
+						<input type="file" id="fileInput" />
 						<button onclick="getFileText()" class="btn btn-primary">
 							Process
 						</button>
@@ -87,7 +83,7 @@
 						<button
 							type="button"
 							class="btn btn-primary"
-							id="processData"
+							onclick="processData()"
 						>
 							Process
 						</button>

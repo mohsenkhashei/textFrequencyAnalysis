@@ -79,18 +79,17 @@ function getFileText() {
 		});
 	}
 }
-const button = document.getElementById("processData");
 
 // Add click event listener to the button
-button.addEventListener("click", function (ev) {
-	ev.stopPropagation();
-	ev.preventDefault();
-	console.log("clicked in new");
+function processData() {
+	// ev.stopPropagation();
+	// ev.preventDefault();
+	// console.log("clicked in new");
 
 	if (validateInput()) {
 		const replacementInput = document.getElementById("repControlInput");
 		const pare = document.getElementById("pare");
-		console.log(replacementInput.value);
+		// console.log(replacementInput.value);
 		ipcRenderer.send("switchLetters", replacementInput.value);
 		let isSwitchLettersResponseHandled = false;
 		ipcRenderer.on("switchLettersResponse", (event, result) => {
@@ -131,24 +130,13 @@ button.addEventListener("click", function (ev) {
 						</div>
     			</section>
     `;
-			console.log("here");
+			// console.log("here");
 			pare.innerHTML += contentTemplate;
 		});
 	}
-});
+}
 
 function exit() {
 	let exitSection = document.getElementById("exitSection");
 	exitSection.style.display = "none";
-}
-
-function deletePreFile() {
-	ipcRenderer.send("deletePreviousFile");
-	ipcRenderer.on("deletePreviousFileResponse", (event, rs) => {
-		if (rs.deleted) {
-			console.log("deleted successfully");
-		} else {
-			console.log("we have problem");
-		}
-	});
 }

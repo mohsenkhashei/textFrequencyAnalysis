@@ -1,30 +1,29 @@
 const log = require("electron-log");
 const JSONModule = require("./JSONModule");
 const { countLetters, switchLetters } = require("./frequencyAnalysis");
-const FILE_NAME = "database/frequencyTBL.json";
+const FILE_NAME = "frequencyTBL.json";
 
-const deletePrev = async () => {
+const init = async (text) => {
 	try {
 		const jsonDB = new JSONModule(FILE_NAME);
-		await jsonDB.clear();
-		log.info("previous file deleted");
-		return { deleted: true };
-	} catch (err) {
-		log.error("problem in deleting file", err);
-	}
-};
-const init = async (text) => {
-	const jsonDB = new JSONModule(FILE_NAME);
-
-	try {
 		const frAnalysis = countLetters(text);
 		const data = [
-			{ ID: 1, paragraph: text, frAnalysis: JSON.stringify(frAnalysis) },
+			{
+				paragraph: text,
+				frAnalysis: JSON.stringify(frAnalysis),
+				replacement: "",
+			},
 		];
 
-		await jsonDB.run(data);
-		log.info(`count of inserted data: ${data.length} in ${FILE_NAME}`);
-
+		// await jsonDB.checkAccess();
+		await jsonDB.writing(data);
+		log.info(
+			`count of inserted data: ${data.length} in ${jsonDB.filename}`
+		);
+		// await jsonDB.reading();
+		// const response = await jsonDB.query();
+		// log.debug(response);
+		// log.info("###### data showed above ######");
 		return { paragraph: text, frAnalysis: frAnalysis };
 	} catch (err) {
 		log.error(err);
@@ -42,31 +41,19 @@ const changeInput = (replacementInput) => {
 	}
 	return obj;
 };
-const getData = async (jsonDB) => {
-	try {
-		const response = await jsonDB.query();
-		const lastItem = response[response.length - 1];
-		log.info(`getData data retrived`);
-		return lastItem;
-	} catch (err) {
-		log.error(err);
-	}
-};
+
 const processSwitchLetters = async (replacement) => {
 	try {
 		const jsonDB = new JSONModule(FILE_NAME);
-		await jsonDB.init();
 
-		let changedInput = changeInput(replacement);
-		//##############################
-		log.info("getting data ");
-		// const rs = await getData(jsonDB);
-
+		//##########################################################################
+		await jsonDB.reading();
 		const response = await jsonDB.query();
-		const lastItem = response[response.length - 1];
 		log.info(`getData data retrived`);
-
-		//##########################
+		log.info(response);
+		const lastItem = response[response.length - 1];
+		//##########################################################################
+		let changedInput = changeInput(replacement);
 		const newText = switchLetters(lastItem.paragraph, changedInput);
 		const frAnalysis = countLetters(newText);
 		const data = {
@@ -76,19 +63,19 @@ const processSwitchLetters = async (replacement) => {
 		};
 
 		response.push(data);
-		await jsonDB.run(response);
-		log.info(`Last inserted `);
+		await jsonDB.writing(response);
+		// log.info(`Last inserted ##### ${response.length}`);
 
 		let output = {
 			paragraph: newText,
 			frAnalysis: frAnalysis,
 			replacement: replacement,
 		};
-		// log.info(output);
+
 		return output;
 	} catch (err) {
 		log.error(err);
 	}
 };
 
-module.exports = { init, processSwitchLetters, deletePrev };
+module.exports = { init, processSwitchLetters };

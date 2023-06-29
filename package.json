@@ -4,24 +4,31 @@
 	"author": "Mohsen Khashei",
 	"version": "1.0.0",
 	"description": "This applicaton is for educational purpose. using Frequency Analysis for decipher text ",
-	"main": "./core/main.js",
+	"main": "core/main.js",
 	"scripts": {
 		"start": "electron .",
 		"build": "electron-builder",
 		"postinstall": "install-app-deps",
 		"build:mac": "electron-builder --mac",
 		"build:win": "electron-builder --win",
-		"build:linux": "electron-builder --linux",
-		"rebuild": "electron-rebuild -f -w sqlite3"
+		"build:linux": "electron-builder --linux"
 	},
 	"permissions": [
 		"writeFile"
 	],
 	"build": {
 		"appId": "com.frequencyAnalysis.app",
-		"productName": "frequencyAnalysis",
+		"productName": "textFrequencyAnalysis",
 		"directories": {
 			"output": "build"
+		},
+		"files": [
+			"database/**/*",
+			"core/**/*",
+			"assets/**/*"
+		],
+		"extraMetadata": {
+			"main": "core/main.js"
 		},
 		"mac": {
 			"target": [
